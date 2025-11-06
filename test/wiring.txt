@@ -1,0 +1,24 @@
+WIRING 
+INMP441 Mic
+gnd
+vcc 3.3v
+sd  32
+L/R gnd
+WS  35
+SCK 33
+
+MAX98357A
+Vin 5v
+gnd 
+GAIN GND
+DIN  25
+BCLK 27
+LRC  26
+
+Servo
+19
+
+oled 0.92
+SDA 21
+SCL 22
+ 
