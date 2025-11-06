@@ -33,21 +33,21 @@ ESP32 DevKit biasa (pin numbers sesuai label pada board)
 ## 🗺️ Diagram Koneksi (ASCII — View Cepat)
 
 ```
-         +------------------ ESP32 DevKit ------------------+
-         |                                                |
+         +------------------ ESP32 DevKit ---------------------+
+         |                                                     |
  3.3V ---+----+-----------------------------------+  VCC(3.3V) |
-            |                                   |           |
-           INMP441                             OLED        |
-        VCC -> 3.3V                      VCC -> 3.3V         |
-        GND -> GND                       GND -> GND         |
-        L/R -> GND                       SDA -> GPIO21      |
-        WS  -> GPIO35 (LRCLK)            SCL -> GPIO22      |
-        SCK -> GPIO33 (BCLK)            (I2C addr 0x3C)    |
-        SD  -> GPIO32 (DATA OUT)                           |
-                                                        GND |
- MAX98357A                                            (common)
-  VIN -> 5V (ext PSU)                                   |
-  GND -> GND -------------------------------------------+
+            |                                   |              |
+           INMP441                             OLED            |
+        VCC -> 3.3V                      VCC -> 3.3V           |
+        GND -> GND                       GND -> GND            |
+        L/R -> GND                       SDA -> GPIO21         |
+        WS  -> GPIO35 (LRCLK)            SCL -> GPIO22         |
+        SCK -> GPIO33 (BCLK)            (I2C addr 0x3C)        |
+        SD  -> GPIO32 (DATA OUT)                               |
+                                                           GND |
+ MAX98357A                                              (common)
+  VIN -> 5V (ext PSU)                                          |
+  GND -> GND --------------------------------------------------+
   GAIN-> GND
   DIN -> GPIO25 (I2S DOUT)
   BCLK-> GPIO27 (I2S BCLK)
