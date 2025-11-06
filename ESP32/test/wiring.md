@@ -33,31 +33,38 @@ ESP32 DevKit biasa (pin numbers sesuai label pada board)
 ## 🗺️ Diagram Koneksi (ASCII — View Cepat)
 
 ```
-         +------------------ ESP32 DevKit ---------------------+
-         |                                                     |
- 3.3V ---+----+-----------------------------------+  VCC(3.3V) |
-            |                                   |              |
-           INMP441                             OLED            |
-        VCC -> 3.3V                      VCC -> 3.3V           |
-        GND -> GND                       GND -> GND            |
-        L/R -> GND                       SDA -> GPIO21         |
-        WS  -> GPIO35 (LRCLK)            SCL -> GPIO22         |
-        SCK -> GPIO33 (BCLK)            (I2C addr 0x3C)        |
-        SD  -> GPIO32 (DATA OUT)                               |
-                                                           GND |
- MAX98357A                                              (common)
-  VIN -> 5V (ext PSU)                                          |
-  GND -> GND --------------------------------------------------+
-  GAIN-> GND
-  DIN -> GPIO25 (I2S DOUT)
-  BCLK-> GPIO27 (I2S BCLK)
-  LRC -> GPIO26 (I2S LRC)
+                     ╔══════════════════════════════════════╗
+                     ║             ESP32 DEVKIT V1          ║
+                     ║              (Top View)              ║
+╔════════════════════╩══════════════════════════════════════╩═════════════════════╗
+║ GND [1]   o─────────────────────────────────────────────────────────o   GND [1] ║
+║ 3V3 [2]   o──┬───────────────────────────────────────────────────┬──o   EN [2]  ║
+║              │                                                   │              ║
+║              │               USB Connector Area                  │              ║
+║              │                                                   │              ║
+║              └───────── OLED VCC, INMP441 VCC (3.3V) ────────────┘              ║
+║                                                                                 ║
+║ GPIO36 [VP] o                    │                    o GPIO23 [3]              ║
+║ GPIO39 [VN] o                    │                    o GPIO22 ←── OLED SCL     ║
+║    GPIO34   o                    │                    o GPIO21 ←── OLED SDA     ║
+║    GPIO35   o──┬──→ INMP441 WS   │                    o GPIO19 ←── Servo Signal ║
+║    GPIO32   o──┴──→ INMP441 SD   │                    o GPIO18                  ║
+║    GPIO33   o────→ INMP441 SCK   │                    o GPIO5                   ║
+║    GPIO25   o────→ MAX98357A DIN │                    o GPIO17                  ║
+║    GPIO26   o────→ MAX98357A LRC │                    o GPIO16                  ║
+║    GPIO27   o────→ MAX98357A BCLK│                    o GPIO4                   ║
+║    GPIO14   o                    │                    o GPIO0                   ║
+║    GPIO12   o                    │                    o GPIO2                   ║
+║    GPIO13   o                    │                    o GPIO15                  ║
+║ GND [15]    o────────────────────────────────────────────────────────o          ║
+║ VIN [16] (5V) o──→ MAX98357A VIN, Servo +5V (ext PSU)                           ║
+╚═════════════════════════════════════════════════════════════════════════════════╝
 
- Servo SG90:
-  +5V (ext PSU) ---+
-                   |
-  Signal -> GPIO19 |
-  GND  -> GND -----+
+**Catatan Pinout Lengkap ESP32 DevKit V1:**
+- **Sisi Kiri (16 pin, dari atas ke bawah):** GND [1], 3V3 [2], GPIO36 (VP) [3], GPIO39 (VN) [4], GPIO34 [5], GPIO35 [6], GPIO32 [7], GPIO33 [8], GPIO25 [9], GPIO26 [10], GPIO27 [11], GPIO14 [12], GPIO12 [13], GPIO13 [14], GND [15], VIN/5V [16].
+- **Sisi Kanan (14 pin, dari atas ke bawah):** GND [1], EN/Reset [2], GPIO23 [3], GPIO22 [4], GPIO21 [5], GPIO19 [6], GPIO18 [7], GPIO5 [8], GPIO17 [9], GPIO16 [10], GPIO4 [11], GPIO0 [12], GPIO2 [13], GPIO15 [14]. (Tidak ada pin 15-16 di sisi kanan.)
+- **Koneksi Tambahan:** Semua GND disatukan (common ground). 3V3 untuk komponen 3.3V (OLED, INMP441). VIN/5V eksternal untuk MAX98357A & Servo (disarankan ≥2A).
+- **Pin Tidak Digunakan:** GPIO34, GPIO36, GPIO39 (input-only, sensitif ADC), GPIO12, GPIO13, GPIO14, GPIO0, GPIO2, GPIO4, GPIO5, GPIO16, GPIO17, GPIO18, GPIO23 (bebas untuk ekspansi, tapi hindari konflik boot seperti GPIO0/GPIO2).
 ```
 
 ## ✅ Praktik Terbaik & Catatan Penting
