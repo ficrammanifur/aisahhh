@@ -1,0 +1,8 @@
+pyaudio==0.2.13
+SpeechRecognition==3.9.0
+paho-mqtt==1.6.1
+python-dotenv==1.0.1
+google-generativeai==0.8.5
+pydub==0.25.1
+gtts==2.5.4
+numpy==1.26.4
